@@ -1,0 +1,25 @@
+{
+  "name": "nodewithreact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisanderson27/NodeWithReact.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisanderson27/NodeWithReact/issues"
+  },
+  "homepage": "https://github.com/chrisanderson27/NodeWithReact#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
