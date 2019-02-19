@@ -26,7 +26,8 @@ passport.use(new GoogleStrategy({
             googleId: profile.id
         })
         .then((existingUser) => {
-            if (existingUser) {
+            if (!existingUser) {
+                console.log('user ', existingUser)
                 //we have a record already
                 console.log('user exists');
                 //error, user
