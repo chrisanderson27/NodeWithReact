@@ -19,28 +19,29 @@ passport.deserializeUser((id, done) => {
 })
 
 passport.use(new GoogleStrategy({
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback',
-    proxy: true
-}, (accessToken, refreshToken, profile, done) => {
+        clientID: keys.googleClientID,
+        clientSecret: keys.googleClientSecret,
+        callbackURL: '/auth/google/callback',
+        proxy: true
+    },
 
-    User.find({
+    async (accessToken, refreshToken, profile, done) => {
+
+        const existingUser = await User.find({
             googleId: profile.id
         })
-        .then((existingUser) => {
-            if (!existingUser) {
-                console.log('user ', existingUser)
-                //we have a record already
-                console.log('user exists');
-                //error, user
-                done(null, existingUser);
-            } else {
-                new User({
-                        googleId: profile.id
-                    }).save()
-                    .then(user => done(null, user));
 
-            }
-        });
-}));
+        if (!existingUser) {
+            console.log('user ', existingUser)
+            //we have a record already
+            console.log('user exists');
+            //error, user
+            return done(null, existingUser);
+        }
+
+        const user = await new User({
+            googleId: profile.id
+        }).save();
+
+        done(null, user);
+    }));
