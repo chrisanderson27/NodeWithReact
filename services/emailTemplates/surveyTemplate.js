@@ -1,3 +1,3 @@
 module.exports = survey => {
-  return `<div>${survery.body}</div>`;
+  return `<div>${survey.body}</div>`;
 };
